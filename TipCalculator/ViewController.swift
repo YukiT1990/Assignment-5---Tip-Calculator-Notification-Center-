@@ -34,9 +34,29 @@ class ViewController: UIViewController {
         tipPercentageSlider.value = 15
         tipPercentageLabel.text = "\(Int(tipPercentageSlider.value)) %"
         
+        // set placeholder for the text field
         billAmountTextField.placeholder = "Bill Amount"
         
+        // add color to the button
+        calculateTipButton.backgroundColor = .cyan
+        calculateTipButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         
+        // add color to the slider
+        tipPercentageSlider.tintColor = .cyan
+        tipPercentageSlider.thumbTintColor = .cyan
+        
+        // add shadow to the label
+        tipAmountLabel.layer.shadowOffset = CGSize(width: 3, height: 3)
+        tipAmountLabel.layer.shadowOpacity = 0.5
+        tipAmountLabel.layer.shadowRadius = 2
+        tipAmountLabel.layer.shadowColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        
+        // add shadow to the button label
+        calculateTipButton.titleLabel!.layer.shadowColor = UIColor.black.cgColor
+        calculateTipButton.titleLabel!.layer.shadowOffset = CGSize(width: -0.5, height: 0.5)
+        calculateTipButton.titleLabel!.layer.shadowOpacity = 0.5
+        calculateTipButton.titleLabel!.layer.shadowRadius = 0
+        calculateTipButton.titleLabel!.layer.masksToBounds = false
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -68,13 +88,11 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWasShown(_ notification: NSNotification) {
-      // 2. When notified, I want to ask iOS the size(height) of the keyboard
       guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
       
       let keyboardFrame = keyboardFrameValue.cgRectValue
       let keyboardHeight = keyboardFrame.size.height
       
-      // 3. Tell scrollview to scroll up (height)
       let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
       scrollView.contentInset = insets
       scrollView.scrollIndicatorInsets = insets

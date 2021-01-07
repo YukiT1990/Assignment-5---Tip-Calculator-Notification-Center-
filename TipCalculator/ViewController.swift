@@ -59,23 +59,56 @@ class ViewController: UIViewController {
         calculateTipButton.titleLabel!.layer.masksToBounds = false
     }
 
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
+    @IBAction func adjustTipPercentage(_ sender: UISlider) {
         let currentValue = Int(sender.value)
         tipPercentageLabel.text = "\(currentValue) %"
     }
     
-    
+    // after implementing textFieldValueChanged and sliderValueChanged, buttonClicked became almost no use
     @IBAction func buttonClicked(_ sender: UIButton) {
         if billAmountTextField.text != nil {
             if Int(billAmountTextField.text!) != nil {
                 let billAmountInFloat = (billAmountTextField.text! as NSString).floatValue
-                let tipAmount : Float = billAmountInFloat * Float(tipPercentageSlider.value) / 100
+                let tipAmount : Float = billAmountInFloat * Float(Int(tipPercentageSlider.value)) / 100
                 let tipAmountInString = NSString(format: "%.2f", tipAmount)
                 tipAmountLabel.text = "$ \(tipAmountInString)"
             }
             billAmountTextField.placeholder = "Bill Amount"
         }
+        if billAmountTextField.text?.isEmpty == true {
+            tipAmountLabel.text = "$ 00.00"
+        }
     }
+    
+    
+    @IBAction func textFieldValueChanged(_ sender: UITextField) {
+        if billAmountTextField.text != nil {
+            if Int(billAmountTextField.text!) != nil {
+                let billAmountInFloat = (billAmountTextField.text! as NSString).floatValue
+                let tipAmount : Float = billAmountInFloat * Float(Int(tipPercentageSlider.value)) / 100
+                let tipAmountInString = NSString(format: "%.2f", tipAmount)
+                tipAmountLabel.text = "$ \(tipAmountInString)"
+            }
+        }
+        if billAmountTextField.text?.isEmpty == true {
+            tipAmountLabel.text = "$ 00.00"
+        }
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: Any) {
+        if billAmountTextField.text != nil {
+            if Int(billAmountTextField.text!) != nil {
+                let billAmountInFloat = (billAmountTextField.text! as NSString).floatValue
+                let tipAmount : Float = billAmountInFloat * Float(Int(tipPercentageSlider.value)) / 100
+                let tipAmountInString = NSString(format: "%.2f", tipAmount)
+                tipAmountLabel.text = "$ \(tipAmountInString)"
+            }
+        }
+        if billAmountTextField.text?.isEmpty == true {
+            tipAmountLabel.text = "$ 00.00"
+        }
+    }
+    
     
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)

@@ -41,6 +41,9 @@
                                                 <rect key="frame" x="60" y="320.5" width="294" height="45.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldValueChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="COS-Mf-wF0"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYH-xC-1p0">
                                                 <rect key="frame" x="60" y="416" width="294" height="21"/>
@@ -48,10 +51,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-Mv-rqk">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-Mv-rqk">
                                                 <rect key="frame" x="58" y="487" width="298" height="31"/>
                                                 <connections>
-                                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xxz-8J-yDu"/>
+                                                    <action selector="adjustTipPercentage:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xxz-8J-yDu"/>
+                                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="4ah-iz-MJG"/>
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-Lw-shE">
